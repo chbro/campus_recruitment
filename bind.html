@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <input type="" id="model">
+  <script type="text/javascript">
+    Object.defineProperty(window, 'm', {
+      set: function(v) {
+        model.value = v
+      }
+    })
+    model.onkeyup = function() {
+      m = this.value
+    }
+  </script>
+</body>
+</html>
