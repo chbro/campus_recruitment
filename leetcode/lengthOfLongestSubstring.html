@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>lengthOfLongestSubstring</title>
+</head>
+<body>
+
+<script>
+function lengthOfLongestSubstring(str) {
+    var arr = str.split("");
+    var res_arr = [], tmp_arr = [];
+    var len = arr.length;
+    for(var j = 0;j < len; j++) {
+        for(var i = j;i < len; i++) {
+            if(res_arr.length == 95) return 95; // dirty
+            if(tmp_arr.every(function(v) {return v != arr[i];}))
+                tmp_arr.push(arr[i]);
+            else  {
+                if(tmp_arr.length > res_arr.length) {
+                    res_arr = tmp_arr.concat([]);
+                }
+                tmp_arr = [];
+                break
+            }
+        }
+        if(tmp_arr.length > res_arr.length) {
+            res_arr = tmp_arr.concat([]);
+        }
+        tmp_arr = [];
+    }
+    return res_arr.length;
+}
+console.log(lengthOfLongestSubstring("dvdf"));
+</script>
+</body>
+</html>

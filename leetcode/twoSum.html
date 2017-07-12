@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>twoSum</title>
+</head>
+<body>
+
+<script type="text/javascript">
+var twoSum = function(nums, target) {
+    var len = nums.length;
+    var res = [];
+    for(var i = 0;i < len; i++) {
+        for(var j = i+1;j < len; j++)
+            if(nums[j]+nums[i] == target) {
+                res.push(i);
+                res.push(j);
+            }
+    }
+    return res;
+};
+alert(twoSum([-1,-2,-3,-4,-5], -8));
+</script>
+</body>
+</html>
