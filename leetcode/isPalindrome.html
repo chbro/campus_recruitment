@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>palindrome</title>
+</head>
+<body>
+
+<script>
+function isPalindrome(num) {
+    var arr = ('' + num).split('');
+    var len = arr.length;
+    var mid = arr.length%2 ? Math.ceil(arr.length/2)-1 : (arr.length/2+1);
+    var isPalindrome = true
+    for(var i = 0;i < mid; i++) {
+        if(arr[i] != arr[len-i-1])
+            isPalindrome = false
+    }
+    return isPalindrome;
+}
+console.log(isPalindrome(11211));
+</script>
+</body>
+</html>
