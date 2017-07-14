@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>reverseInterger</title>
+</head>
+<body>
+
+<script>
+function reverseInterger(num) {
+    var positive = true;
+    var res_num = ('' + Math.abs(num)).split('').reverse().join('');
+    if(num < 0) positive = false;
+    if(Math.abs(res_num) >= Math.pow(2, 31)) return 0;
+    return positive ? +res_num : -Number(res_num);
+}
+console.log(reverseInterger(1534236469));
+console.log(reverseInterger(-2147483412));
+</script>
+</body>
+</html>
