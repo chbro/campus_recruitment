@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Longest Palindromic Substring</title>
+</head>
+<body>
+<input type="" oninput="xx();" name="">
+<script>
+function xx() {
+    console.log(1);
+}
+function longestPalindrome(str) {
+    if(!str.length) return '';
+    if(str.length == 1) return str;
+    var dp = [];
+    //初始化
+    for(var i=0;i<str.length;i++)
+        for(var j=0;j<str.length;j++)
+            dp[i][j] = i>=j;
+    for(var m=0;m<str.length;m++) {
+        for(var n=str.length;n>m;n--) {
+            if(str.charAt(m) == str.charAt()) {
+
+            }
+        }
+
+    }
+}
+// console.log(longestPalindrome('cbba'));
+</script>
+</body>
+</html>

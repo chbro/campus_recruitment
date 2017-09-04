@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>didi</title>
+</head>
+<body>
+
+<!--
+<script type="text/javascript">
+var line = readline();
+var arr = line.split(' ').map(v => parseInt(v));
+
+var max = 0, sum = 0;
+for(var v of arr) {
+    sum += v;
+    if (sum > max) {
+        max = sum;
+    } else if (sum < 0) {
+        sum = 0;
+    }
+}
+if (arr.every(v => {return v < 0}))
+    print(Math.max.apply(null, arr));
+else 
+    print(max);
+</script>
+-->
+
+<script type="text/javascript">
+function i_max(arr, i) {
+    var max;
+    while (i--) {
+        max = Math.max.apply(null, arr);
+        arr.splice(arr.indexOf(max), 1);
+    }
+    return max;
+}
+console.log(i_max([45,67,33,21],2))
+</script>
+
+</body>
+</html>
