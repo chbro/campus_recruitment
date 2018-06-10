@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>test test</title>
+    <style type="text/css">
+    body,html{
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        color: #000000;
+    }
+    table{
+        border-collapse: collapse;
+        width: 100%;
+        table-layout: fixed;
+    }
+    thead{
+        background: #3d444c;
+        color: #ffffff;
+    }
+    td,th{
+        border: 1px solid #e1e1e1;
+        padding: 0;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+
+<table id="jsTrolley">
+    <thead><tr><th>名称</th><th>价格</th><th>操作</th></tr></thead>
+    <tbody>
+<!--         <tr><td>产品1</td><td>10.00</td><td><a>删除</a></td></tr>
+        <tr><td>产品2</td><td>30.20</td><td><a>删除</a></td></tr>
+        <tr><td>产品3</td><td>20.50</td><td><a>删除</a></td></tr> -->
+    </tbody>
+    <tfoot><tr><th>总计</th><td colspan="2">60.70(3件商品)</td></tr></tfoot>
+</table>
+
+<script type="text/javascript">
+void function add(items) {
+    items.map(v => v.price = v.price.toFixed(2));
+    items.forEach(item => {    
+        var doc = document.createElement('tr');
+        doc.innerHTML = `<tr><td>${item.name}</td><td>${item.price}</td><td><a href="#">删除</a></td></tr>`;
+        var tbody = document.querySelector('#jsTrolley tbody');
+        tbody.appendChild(doc);
+    })
+}([{name: '商品1',price: 10},{name: '商品2',price: 30.2},{name: '商品3',price: 20.5}])
+
+
+void function bind() {
+    var tbody = document.querySelector('#jsTrolley tbody');
+    var tfoot =  document.querySelector('#jsTrolley tfoot td');
+
+    tbody.addEventListener('click', function(e) {
+        var target = e.target;
+
+        if(target.nodeName === 'A' && target.innerText === '删除') {
+            e.preventDefault();
+            tbody.removeChild(target.parentNode.parentNode);
+
+            var num = parseInt(tfoot.innerText.substr(tfoot.innerText.indexOf('(')+1))-1;
+            tfoot.innerText = (parseFloat(tfoot.innerText) - Number(target.parentNode.previousSibling.innerText)).toFixed(2) + `(${num}件商品)`
+        }
+    }, false)
+}()
+
+
+// function calc(arr) {
+//     let sum = 0;
+
+//     let tmp = 0;
+//     for(let i=0,len=arr.length;i<len;i++) {
+        
+//         if (arr[i] === '(' && arr[i+1] === '(') {
+//             sum++;
+//             tmp++;
+//         } else if (arr[i] === '(' && arr[i-1] === '(') {
+//             sum++;
+//         } else {
+//             i += tmp;
+//             tmp = 0;
+//         }
+        
+//     }
+
+//     let res = sum;
+//     while(--sum) {
+//         res *= sum;
+//     }
+
+//     return res||1;
+// }
+
+// console.log(calc('()(())(())'),calc('(())()(())'),calc('(())(())()'), calc('(((())))'))
+
+function calc2(str) {
+    const replacer = 'A';
+    str = str.replace(/\(\(/g, replacer);
+
+    let arr = str.split('');
+    // if (arr.every(v => {return v !== replacer})) {
+    //     return 1
+    // }
+
+    let sum = 0;
+    arr.forEach((v, i) => {
+        if (v === replacer && (arr[i-1] === '(' || arr[i+1] === '(')) {
+            sum += 3;
+        } else if (v === replacer) {
+            sum += 2;
+        }
+    });
+    
+    return sum;
+}
+
+console.log(calc2('()()()'),calc2('(((())))'),calc2('()'),calc2('(()())'))
+console.log(calc2(''), calc2('(()()(()))'))
+</script>
+</body>
+</html>
